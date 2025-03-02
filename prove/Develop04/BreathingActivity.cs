@@ -1,28 +1,28 @@
 class BreathingActivity : Activity
 {
-    public override string GetDescription()
+    public string GetDescription()
     {
         return "This activity will help you relax by guiding you through deep breathing exercises.";
     }
 
-    public override void Execute()
+    public void ExecuteBreathingActivity()
     {
         int _elapsed = 0;
-        int breatheInTime = 3;  
-        int breatheOutTime = 3; 
-        
+        int breatheInTime = 3;
+        int breatheOutTime = 3;
+
         while (_elapsed < _duration)
         {
             // Breathe in
             Console.WriteLine("Breathe in...");
-            ShowCountdown(breatheInTime); 
+            ShowCountdown(breatheInTime);
             _elapsed += breatheInTime;
 
-            if (_elapsed >= _duration) break; 
+            if (_elapsed >= _duration) break;
 
             // Breathe out
             Console.WriteLine("Breathe out...");
-            ShowCountdown(breatheOutTime); 
+            ShowCountdown(breatheOutTime);
             _elapsed += breatheOutTime;
         }
 

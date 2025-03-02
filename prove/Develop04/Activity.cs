@@ -5,7 +5,7 @@ class Activity
     public void Start()
     {
         Console.Clear();
-        Console.WriteLine($"Starting {GetType().Name.Replace("Activity", "")} Activity...");
+        Console.WriteLine($"Starting {GetActivityName()} Activity...");
         Console.WriteLine(GetDescription());
 
         // Input validation for duration
@@ -23,24 +23,18 @@ class Activity
 
         Console.WriteLine("Prepare to begin...");
         ShowSpinner(3);
-        Execute();
-        End();
     }
 
-    public virtual string GetDescription()
+    // Removed virtual methods
+    public string GetDescription()
     {
         return "This is a general mindfulness activity.";
-    }
-
-    public virtual void Execute()
-    {
-        Console.WriteLine("Executing base activity...");
     }
 
     private void End()
     {
         Console.WriteLine("Great job! You have completed the activity.");
-        Console.WriteLine($"Activity: {GetType().Name.Replace("Activity", "")} - Duration: {_duration} seconds");
+        Console.WriteLine($"Activity: {GetActivityName()} - Duration: {_duration} seconds");
         ShowSpinner(3);
     }
 
@@ -62,5 +56,11 @@ class Activity
             Thread.Sleep(1000);
         }
         Console.WriteLine();
+    }
+
+    // New method to get the name of the activity
+    protected string GetActivityName()
+    {
+        return this.GetType().Name.Replace("Activity", "");
     }
 }

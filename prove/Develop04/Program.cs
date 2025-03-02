@@ -23,7 +23,24 @@ class Program
 
             if (_choice == "4") break;
 
-            _activity?.Start();
+            if (_activity != null)
+            {
+                _activity.Start();
+
+                // Directly call the specific method without polymorphism
+                if (_activity is BreathingActivity breathingActivity)
+                {
+                    breathingActivity.ExecuteBreathingActivity();
+                }
+                else if (_activity is ReflectionActivity reflectionActivity)
+                {
+                    reflectionActivity.ExecuteReflectionActivity();
+                }
+                else if (_activity is ListingActivity listingActivity)
+                {
+                    listingActivity.ExecuteListingActivity();
+                }
+            }
         }
     }
 }

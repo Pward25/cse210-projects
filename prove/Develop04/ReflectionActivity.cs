@@ -21,20 +21,19 @@ class ReflectionActivity : Activity
         "How can you keep this experience in mind in the future?"
     };
 
-    private List<string> _remainingQuestions; // List to keep track of remaining questions
+    private List<string> _remainingQuestions;
 
     public ReflectionActivity()
     {
-        // Initialize the remaining questions list with all available questions
         _remainingQuestions = new List<string>(_availableQuestions);
     }
 
-    public override string GetDescription()
+    public string GetDescription()
     {
         return "This activity will help you reflect on times in your life when you have shown strength and resilience.";
     }
 
-    public override void Execute()
+    public void ExecuteReflectionActivity()
     {
         Random _rand = new();
         Console.WriteLine(_prompts[_rand.Next(_prompts.Length)]);
@@ -42,20 +41,15 @@ class ReflectionActivity : Activity
 
         int _elapsed = 0;
 
-        // Continue asking questions until duration is reached or no remaining questions
         while (_elapsed < _duration && _remainingQuestions.Count > 0)
         {
-            // Pick a random question from the remaining list
             int index = _rand.Next(_remainingQuestions.Count);
             Console.WriteLine(_remainingQuestions[index]);
-
-            // Remove the used question
             _remainingQuestions.RemoveAt(index);
-            ShowSpinner(5);  // Wait for 5 seconds between each question
+            ShowSpinner(5);
             _elapsed += 5;
         }
 
-        // If there are remaining questions, reset the list for future use
         if (_remainingQuestions.Count == 0)
         {
             Console.WriteLine("\nYou've answered all available questions. Re-shuffling the list...");

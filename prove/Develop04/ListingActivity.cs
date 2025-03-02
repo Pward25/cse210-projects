@@ -8,12 +8,12 @@ class ListingActivity : Activity
         "Who are some of your personal heroes?"
     };
 
-    public override string GetDescription()
+    public string GetDescription()
     {
         return "This activity will help you reflect on the good things in your life by listing as many as you can.";
     }
 
-    public override void Execute()
+    public void ExecuteListingActivity()
     {
         Random _rand = new();
         Console.WriteLine(_prompts[_rand.Next(_prompts.Length)]);
