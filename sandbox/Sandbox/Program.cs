@@ -1,9 +1,20 @@
 using System;
 
-class Program
+public class Movie
 {
-    static void Main(string[] args)
+    
+    public string GetDirector()
     {
-        Console.WriteLine("Hello Sandbox World!");
+        return "Steven Speilburg";
     }
 }
+
+
+public class Animated : Movie
+{
+    public string GetAnimator()
+    {
+        return "Walt Disney";
+    }
+}
+
