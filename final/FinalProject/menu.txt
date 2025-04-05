@@ -1,5 +1,5 @@
 Food, Burger, 5.99, true
-Food, Fries, 1.99, false
-Beverage, Coke, 1.99, Large
-Beverage, Coffee, 2.49, Medium
-Dessert, Chocolate Cake, 4.99
+Food, Fries, 1.99, true
+Beverage, Coke, 1.99, true
+Beverage, Coffee, 2.49, true
+Dessert, Chocolate Cake, 4.99, false

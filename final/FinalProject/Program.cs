@@ -71,23 +71,40 @@ class Program
                     Console.Write("Enter the item number to order: ");
                     if (int.TryParse(Console.ReadLine(), out int itemIndex) && itemIndex > 0 && itemIndex <= menu.Count)
                     {
-                        MenuItem selectedItem = menu[itemIndex - 1];
+                        MenuItem originalItem = menu[itemIndex - 1];
+                        MenuItem itemToOrder = null;
 
-                        if (selectedItem is FoodItem foodItem && foodItem.IsCombo)
+                        if (originalItem is FoodItem food)
                         {
-                            Console.WriteLine("This is a combo meal.");
-                            Console.Write("Please select combo size (Small, Medium, Large): ");
-                            string size = Console.ReadLine().Trim();
-                            foodItem.SetComboSize(size);  // Set the combo size for this specific instance
+                            itemToOrder = new FoodItem(food.Name, food.BasePrice, food.IsCombo);
+
+                            if (food.IsCombo)
+                            {
+                                Console.Write("Please select combo size (Small, Medium, Large): ");
+                                string size = Console.ReadLine().Trim();
+                                ((FoodItem)itemToOrder).SetComboSize(size);
+                            }
+                        }
+                        else if (originalItem is BeverageItem bev)
+                        {
+                            itemToOrder = new BeverageItem(bev.Name, bev.BasePrice, bev.Size);
+                        }
+                        else if (originalItem is DessertItem des)
+                        {
+                            itemToOrder = new DessertItem(des.Name, des.BasePrice);
                         }
 
-                        customerOrder.AddItem(selectedItem);  // Add the item with its combo size to the order
+                        if (itemToOrder != null)
+                        {
+                            customerOrder.AddItem(itemToOrder);
+                        }
                     }
                     else
                     {
                         Console.WriteLine("Invalid selection. Try again.");
                     }
                     break;
+
 
                 case "3":
                     customerOrder.ShowOrder();
